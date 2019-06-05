@@ -1,0 +1,10 @@
+
+# HTID:8714199: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
+php_value display_errors 1
+# DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:8714199:
+
+RewriteEngine on
+RewriteRule ^fantasy    fantasy.php [L]
+RewriteRule ^profile    myfantasy.php [L]
+RewriteRule ^search    search.php [L]
+RewriteRule ^create-fantasy    create-fantasy.php [L]

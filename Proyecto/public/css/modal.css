@@ -1,0 +1,528 @@
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+  height: 100%;
+  /*Image only BG fallback*/
+
+  /*background = gradient + image pattern combo*/
+  background:
+    linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+}
+label{
+    width: 100%;
+}
+
+body {
+  font-family: montserrat, arial, verdana;
+}
+/*form styles*/
+#upload_form_PA {
+  width: 400px;
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+}
+#upload_form_PA fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 150%;
+  margin: 0 -20%;
+
+  /*stacking fieldsets above each other*/
+  position: relative;
+}
+/*Hide all except first fieldset*/
+#upload_form_PA fieldset:not(:first-of-type) {
+  display: none;
+}
+/*inputs*/
+#upload_form_PA input, #upload_form_PA textarea {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+/*buttons*/
+#upload_form_PA .action-button {
+  width: 100px;
+  background: #f4a43b;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+#upload_form_PA .action-button:hover, #upload_form_PA .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #f4a43b;
+}
+#upload_form {
+  width: 400px;
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+}
+#upload_form fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 150%;
+  margin: 0 -20%;
+
+  /*stacking fieldsets above each other*/
+  position: relative;
+}
+/*Hide all except first fieldset*/
+#upload_form fieldset:not(:first-of-type) {
+  display: none;
+}
+/*inputs*/
+#upload_form input, #upload_form textarea {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+/*buttons*/
+#upload_form .action-button {
+  width: 100px;
+  background: #f4a43b;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+#upload_form .action-button:hover, #upload_form .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #f4a43b;
+}
+/*headings*/
+.fs-title {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+}
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.fs-subtitle2 {
+  font-weight: normal;
+  font-size: 1.5rem;
+  color: #f4a43b;
+  margin-bottom: 20px;
+  padding-left: 9%;
+}
+/*progressbar*/
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  /*CSS counters to number the steps*/
+  counter-reset: step;
+}
+#progressbar li {
+  list-style-type: none;
+  color: white;
+  text-transform: uppercase;
+  font-size: 9px;
+  width: 33.33%;
+  float: left;
+  position: relative;
+}
+#progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 20px;
+  line-height: 20px;
+  display: block;
+  font-size: 10px;
+  color: #333;
+  background: white;
+  border-radius: 3px;
+  margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: white;
+  position: absolute;
+  left: -50%;
+  top: 9px;
+  z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+  /*connector not needed before the first step*/
+  content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+  background: #f4a43b;
+  color: white;
+}
+
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #F4B12A;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #F4B12A ;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+  color: #90D400 ;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+
+#msform {
+  width: 400px;
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+}
+#msform fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 150%;
+  margin: 0 10%;
+
+  /*stacking fieldsets above each other*/
+  position: relative;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+/*inputs*/
+#msform input, #msform textarea {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+/*buttons*/
+#msform .action-button {
+
+  width: 100px;
+  background: #f4a43b;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #f4a43b;
+}
+/*headings*/
+.fs-title {
+  color: gray;
+  text-transform: uppercase;
+  font-size: 12px;
+  position: center;
+}
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+/*progressbar*/
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  /*CSS counters to number the steps*/
+  counter-reset: step;
+}
+#progressbar li {
+  list-style-type: none;
+  color: white;
+  text-transform: uppercase;
+  font-size: 9px;
+  width: 33.33%;
+  float: left;
+  position: relative;
+}
+#progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 20px;
+  line-height: 20px;
+  display: block;
+  font-size: 10px;
+  color: #333;
+  background: white;
+  border-radius: 3px;
+  margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: white;
+  position: absolute;
+  left: -50%;
+  top: 9px;
+  z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+  /*connector not needed before the first step*/
+  content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+  background: #f4a43b;
+  color: white;
+}
+.boton_personalizado{
+  width: 100px;
+  font-weight: bold;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+  .botonquiz{
+  width: 150px;
+  background: #f4a43b;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+.boton_personalizado:hover{
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #f4a43b;
+
+  @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+  @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500);
+
+  @keyframes roll {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+      transform: translate(-150%,-50%) rotate(-90deg) scale(.3);
+      box-shadow: none;
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%,-50%) rotate(0deg) scale(1);
+      box-shadow: 0 3px 5px rgba(0,0,0,.3);
+    }
+  }
+
+  body {
+    background: #1abc9c;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .wrapper {
+
+    &:active {
+
+      #img-result {
+        margin-top: 2px;
+        box-shadow: 0 1px 2px rgba(0,0,0,.3);
+      }
+    }
+
+    animation: roll 1.5s;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding: 25px;
+    background: #16a085;
+    border-radius: 50%;
+    box-shadow: 0 3px 5px rgba(0,0,0,.3);
+
+    #img-result {
+      cursor: pointer;
+      margin: 0;
+      position: relative;
+      background: #1abc9c;
+      background-size: cover;
+      background-position: center;
+      display: block;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      box-shadow: 0 3px 5px rgba(0,0,0,.3);
+      color: rgba(0,0,0,0);
+      transition: box-shadow .3s, margin .3s, background-image 1.5s;
+
+      &.no-image:before {
+        font-family: 'FontAwesome';
+        content: "\f030";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        color: #fff;
+        font-size: 48px;
+        opacity: .8;
+        transform: translate(-50%, -50%);
+        text-shadow: 0 0px 5px rgba(0,0,0,.4);
+      }
+    }
+    button {
+      margin-top: 20px;
+      display: block;
+      font-family: 'Open Sans Condensed', sans-serif;
+      background: #1abc9c;
+      width: 100%;
+      border: none;
+      color: #fff;
+      padding: 10px;
+      letter-spacing: 1.3px;
+      font-size: 1.05em;
+      border-radius: 5px;
+      box-shadow: 0 4px 5px rgba(0,0,0,.3);
+      outline: 0;
+      transition: box-shadow .3s,  margin-top .3s, padding .3s;
+
+      &:active {
+        box-shadow: none;
+        margin-top: 24px;
+        padding: 8px
+      }
+    }
+  }
+
+  .show-button {
+    background: #264974;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    float: right;
+    display: none;
+  }
+
+  .upload-result {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    overflow-y: auto;
+
+    &__content {
+      word-break: break-all;
+      font-family: 'Source Code Pro';
+      overflow-wrap: break-word;
+    }
+  }
