@@ -383,43 +383,46 @@ class QuizController extends Controller
       //Active Points Quiz
       $quizzes_ActivePoint[] = array();
       foreach( $activepoints as $activepoint){
-        if(Quiz::where('id_fantasy', $id_fantasy)->exists())
+        if(Quiz::where('id_activepoint', $activepoint->id)->exists())
         { 
-          $quiz_PA = Quiz::where('id_activepoint', $activepoint->id)->get(['id']);
-          echo 'EL QUIZZ:'.$quizPA;
-          echo("<br>-------------<br>");
-          $COUNT = array_push($quizzes_ActivePoint, '1');
-          echo json_encode($quizzes_ActivePoint);
-          echo 'id active point: '.$activepoint->id.'<br>';
-          sleep(6);
+          
+          array_push($quizzes_ActivePoint, Quiz::where('id_activepoint',$activepoint->id)->get(['id']));
+        }
+      }
+
+      $questionsid_ActivePoint[] = array();
+      $questionstext_ActivePoint[] = array();
+      array_shift($quizzes_ActivePoint);
+      
+			foreach( $quizzes_ActivePoint as $quiz_ActivePoint){	
+        $idaux_question = $quiz_ActivePoint->first()->id;
+        if( Question::where('id_quiz', $idaux_question)->exists())
+        {
+          array_push($questionsid_ActivePoint, Question::where('id_quiz', $idaux_question)->get(['id']));
+          array_push($questionstext_ActivePoint, Question::where('id_quiz', $idaux_question)->get(['questiontext']));
         }
 			}
 
-      $questions_ActivePoint[] = array();
-      echo json_encode($quizzes_ActivePoint);
-      //var_dump($quizzes_ActivePoint);
-      sleep(5);
-      $quizzes_ActivePoint = array_filter($quizzes_ActivePoint);
-      //print_r($quizzes_ActivePoint);
-      //sleep(10);
-			foreach( $quizzes_ActivePoint as $quiz_ActivePoint){	
-        if( Question::where('id_quiz', $quiz_ActivePoint->id)->exists())
-				  {
-            array_push($questions_ActivePoint, Question::where('id_quiz', $quiz_ActivePoint->id)->get());
-          }
-			}
-
+      array_shift($questionsid_ActivePoint);
+      array_shift($questionstext_ActivePoint);
       $answers_ActivePoint[] = array();
-      $questions_ActivePoint = array_filter($questions_ActivePoint);
-			foreach ($questions_ActivePoint as $question_ActivePoint) {
-				array_push($answers_ActivePoint, Answer::where('id_question', $question_ActivePoint->id)->get());
+      $questionsid_ActivePoint = array_filter($questionsid_ActivePoint);
+			foreach ($questionsid_ActivePoint as $question_ActivePoint) {
+        $idaux_answer = $question_ActivePoint->first()->id;
+        if (Answer::where('id_question', $idaux_answer)->exists()) 
+        {
+          array_push($answers_ActivePoint, Answer::where('id_question', $idaux_answer)->get(['id', 'answertext']));
+        }
+          
 			}
-
-			$data[] = array();
+      
+      array_shift($answers_ActivePoint);
+      $data[] = array();
+      array_shift($data);
 			$data['quizFantasy'] = $quiz;
 			$data['questionFantasy'] = $question_Fantasy;
 			$data['answerFantasy'] = $answer_Fantasy;
-			$data['questionsPA'] = $questions_ActivePoint;
+			$data['questionsPA'] = $questionstext_ActivePoint;
 			$data['quizzesPA'] = $quizzes_ActivePoint;
 			$data['answersPA'] = $answers_ActivePoint;
 			return view('mock.mock',compact('data'));

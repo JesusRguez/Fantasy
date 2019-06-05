@@ -4,12 +4,19 @@
     {{$data}}
 </p>
 
-@if($data['questionsPA'])
+
 <p>
     Success
 </p>
-@foreach ($data['questionsPA'] as $question)
+@foreach ($data as $item)
+@php
+$obj =array($item)
+@endphp
+@endforeach
+
+
+@foreach ($item['questionsPA'] as $question)
     {{$question->questiontext}}
 @endforeach
-@endif
+
 @endsection

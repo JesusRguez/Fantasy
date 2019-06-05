@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quiz extends Model
 {
-    protected $table = 'quizes';
+	protected $table = 'quizes';
+	protected $primaryKey = 'id';
     protected $fillable = [
-	'id_fantasy',
-	'id_activepoint',
+		'id_fantasy',
+		'id_activepoint',
     	'id_student1',
-	'id_student2'
+		'id_student2'
     ];
 }
